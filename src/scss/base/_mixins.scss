@@ -1,23 +1,8 @@
 @use 'variables' as v;
 
 /** Media Queries **/
-@mixin telefono {
-    @media (min-width: v.$telefono) {
-        @content;
-    }
-}
-@mixin tablet {
-    @media (min-width: v.$tablet) {
-        @content;
-    }
-}
-@mixin desktop {
-    @media (min-width: v.$desktop) {
-        @content;
-    }
-}
-@mixin xl_desktop {
-    @media (min-width: v.$xl_desktop) {
+@mixin mediaq ($size) {
+    @media (min-width: $size){
         @content;
     }
 }
@@ -45,4 +30,30 @@
     display: grid;
     gap: $espaciado;
     grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin contenedor {
+    // max-width: 120rem;
+    // width:95%;
+    width: min(95%, 120rem); //Aplica el minimo. Si el 95% de la pantalla es más pequeño que 120 rem, aplica ese, si no, el otro
+    margin: 0 auto;
+}
+
+@mixin contenedor-sm{
+    // max-width: 120rem;
+    // width:95%;
+    width: min(95%, 60rem); //Aplica el minimo. Si el 95% de la pantalla es más pequeño que 120 rem, aplica ese, si no, el otro
+    margin: 0 auto;
+}
+
+@mixin headings{
+    font-family:v.$fuente-principal;
+    font-weight:v.$black;
+    margin: 2rem 0;
+}
+
+@mixin nombre-pagina{
+    @include headings;
+    margin: 6rem 0 3rem 0;
+    text-align: center;
 }
