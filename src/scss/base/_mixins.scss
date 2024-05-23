@@ -35,7 +35,7 @@
 @mixin contenedor {
     // max-width: 120rem;
     // width:95%;
-    width: min(95%, 120rem); //Aplica el minimo. Si el 95% de la pantalla es más pequeño que 120 rem, aplica ese, si no, el otro
+    width: min(95%, 140rem); //Aplica el minimo. Si el 95% de la pantalla es más pequeño que 120 rem, aplica ese, si no, el otro
     margin: 0 auto;
 }
 
@@ -56,4 +56,24 @@
     @include headings;
     margin: 6rem 0 3rem 0;
     text-align: center;
+}
+
+@mixin texto-fluido($min, $max){
+    font-size: clamp($min, -0.8rem + 10vw, $max); //Toma dos valores, el mínimo y el máximo. Si es posible aplica el intermedio siempre que el tamaño del cálculo no se exceda de los limites del máximo y el mínimo
+}
+
+@mixin texto-degradado($inicio, $final){
+    background: linear-gradient(to right, $inicio, $final);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@mixin logo{
+    color:v.$blanco;
+    text-align:center;
+    margin-bottom: 2rem;
+    @include mediaq(v.$desktop){
+        text-align: left;
+        margin: 0; 
+    }
 }
