@@ -52,20 +52,27 @@ class Usuario extends ActiveRecord {
     public function validar_cuenta() {
         if(!$this->nombre) {
             self::$alertas['error'][] = 'El Nombre es Obligatorio';
+        }else if(strlen($this->nombre)>= 40){
+            self::$alertas['error'][] = 'El Nombre no puede superar los 40 caracteres';
         }
+
         if(!$this->apellido) {
             self::$alertas['error'][] = 'El Apellido es Obligatorio';
+        }else if(strlen($this->apellido)>= 40){
+            self::$alertas['error'][] = 'El Apellido no puede superar los 40 caracteres';
         }
+
         if(!$this->email) {
             self::$alertas['error'][] = 'El Email es Obligatorio';
+        }else if(strlen($this->email)>= 40){
+            self::$alertas['error'][] = 'El Email no puede superar los 40 caracteres';
         }
+
         if(!$this->password) {
             self::$alertas['error'][] = 'El Password no puede ir vacio';
-        }
-        if(strlen($this->password) < 6) {
+        }else if(strlen($this->password) < 6) {
             self::$alertas['error'][] = 'El password debe contener al menos 6 caracteres';
-        }
-        if($this->password !== $this->password2) {
+        }else if($this->password !== $this->password2) {
             self::$alertas['error'][] = 'Los password son diferentes';
         }
         return self::$alertas;
