@@ -16,9 +16,9 @@
     }
 
     &__exito{
-        background-color: lighten(v.$verde, 40%);
+        background-color: lighten(v.$verde, 50%);
         border-left: .5rem solid v.$verde;
         border-right: .5rem solid v.$verde;
-        color: v.$verde
+        color: darken(v.$verde,10%);
     }
 }

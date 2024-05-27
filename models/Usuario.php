@@ -30,15 +30,14 @@ class Usuario extends ActiveRecord {
         $this->password2 = $args['password2'] ?? '';
         $this->confirmado = $args['confirmado'] ?? 0;
         $this->token = $args['token'] ?? '';
-        $this->admin = $args['admin'] ?? '';
+        $this->admin = $args['admin'] ?? 0;
     }
 
     // Validar el Login de Usuarios
     public function validarLogin() {
         if(!$this->email) {
             self::$alertas['error'][] = 'El Email del Usuario es Obligatorio';
-        }
-        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+        }else if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             self::$alertas['error'][] = 'Email no válido';
         }
         if(!$this->password) {
@@ -82,8 +81,7 @@ class Usuario extends ActiveRecord {
     public function validarEmail() {
         if(!$this->email) {
             self::$alertas['error'][] = 'El Email es Obligatorio';
-        }
-        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+        }else if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             self::$alertas['error'][] = 'Email no válido';
         }
         return self::$alertas;
