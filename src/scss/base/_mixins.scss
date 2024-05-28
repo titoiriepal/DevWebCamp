@@ -146,3 +146,61 @@
 @mixin shadow{
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+
+@mixin reset-lista{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin tags{
+    @include reset-lista;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+
+    > li{
+        background-color: v.$azul;
+        padding: 1rem;
+        border-radius: .5rem;
+        font-size: 1.4rem;
+        color: v.$blanco;
+        font-weight: v.$bold;
+        transition: all .3s ease-in-out;
+
+        &:hover{
+            cursor: pointer;
+            background-color: darken(v.$azul, 15%);
+
+        }
+    }
+
+}
+
+@mixin scroll($color : #AAAAAA ){
+    &::-webkit-scrollbar{
+        appearance: none;            
+    }
+
+    &::-webkit-scrollbar:vertical {
+        width:10px;
+    }
+    
+    &::-webkit-scrollbar-button:increment,.app::-webkit-scrollbar-button {
+        display: none;
+    } 
+    
+    &::-webkit-scrollbar:horizontal {
+        height: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: darken($color, 30%);
+        border-radius: 10px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;  
+    }
+}

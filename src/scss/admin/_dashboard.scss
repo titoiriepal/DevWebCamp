@@ -45,6 +45,7 @@
     &__grid{
         display: flex;
         flex: 1;
+        overflow-y:auto;
     }
 
     &__sidebar{
@@ -88,9 +89,38 @@
     }
 
     &__contenido{
-        background-color: lighten(grey, 20%);
+        background-color: lighten(grey, 40%);
         padding: 1rem 1rem 3rem 1rem;
         width: 100%;
+        overflow-y: scroll;
+
+        @include m.scroll(v.$azul);
+
+        // &::-webkit-scrollbar{
+        //     appearance: none;            
+        // }
+
+        // &::-webkit-scrollbar:vertical {
+        //     width:10px;
+        // }
+        
+        // &::-webkit-scrollbar-button:increment,.app::-webkit-scrollbar-button {
+        //     display: none;
+        // } 
+        
+        // &::-webkit-scrollbar:horizontal {
+        //     height: 10px;
+        // }
+        
+        // &::-webkit-scrollbar-thumb {
+        //     background-color: darken(v.$azul, 30%);
+        //     border-radius: 10px;
+        // }
+        
+        // &::-webkit-scrollbar-track {
+        //     border-radius: 10px;  
+        // }
+
         @include m.mediaq(v.$tablet){
             padding: 1rem 5rem 3rem 5rem;
         }

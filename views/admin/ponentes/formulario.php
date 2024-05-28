@@ -74,11 +74,8 @@
             placeholder="Ej. Node.js, PHP, CSS, Laravel, Javascript,"
         />
 
-        <div id="tags" class="formulario__listado">
-           <input type="hidden" name="tags" value="<?php echo $ponenete->tags ?? ''; ?>" />
-
-
-        </div>
+        <div id="tags" class="formulario__listado"></div>
+        <input type="hidden" name="tags" value="<?php echo $ponenete->tags ?? ''; ?>" />
     </div>
 
 </fieldset>
