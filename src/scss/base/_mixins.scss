@@ -46,6 +46,11 @@
     margin: 0 auto;
 }
 
+@mixin contenedor-md{
+    width: min(95%, 80rem); //Aplica el minimo. Si el 95% de la pantalla es más pequeño que 120 rem, aplica ese, si no, el otro
+    margin: 0 auto;
+}
+
 @mixin headings{
     font-family:v.$fuente-principal;
     font-weight:v.$black;
@@ -136,4 +141,8 @@
         cursor: pointer;
     }
 
+}
+
+@mixin shadow{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }

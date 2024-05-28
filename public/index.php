@@ -40,8 +40,10 @@ $router->get('/confirmar-cuenta', [AuthController::class, 'confirmar']);
 
 $router->get('/admin/dashboard', [DashboardController::class, 'index']);
 
+//PONENTES
 
 $router->get('/admin/ponentes', [PonentesController::class, 'index']);
+$router->get('/admin/ponentes/crear', [PonentesController::class, 'crear']);
 
 $router->get('/admin/eventos', [EventosController::class, 'index']);
 
