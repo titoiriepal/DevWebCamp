@@ -9,6 +9,13 @@
 
         let tags = [];
 
+        //Recuperar los tags del input oculto
+        if(tagsInputHidden.value !== ''){
+            tags = tagsInputHidden.value.split(',');
+            console.log(tags);
+            mostrarTags();
+        }
+
 
         //Escuchar los cambios en el Input
 
@@ -32,6 +39,7 @@
 
         function mostrarTags(){
             tagsDiv.textContent = '';
+            
 
             tags.forEach(tag => {
                 const etiqueta = document.createElement('LI');
