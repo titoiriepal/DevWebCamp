@@ -29,7 +29,12 @@
             display: flex;
             justify-content: flex-end;
             gap: 2rem;
-            align-items: center;
+            align-items: center; 
+            
+
+            @include m.mediaq(v.$tablet){
+
+            }
         }
     }
 

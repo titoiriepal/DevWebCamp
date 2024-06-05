@@ -2,6 +2,7 @@
     
 namespace Controllers;
 
+use Classes\Paginacion;
 use MVC\Router;
 use Model\Ponente;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -13,13 +14,34 @@ class PonentesController{
             header('Location: /');
         }
 
-        $ponentes = Ponente::all();
+        $pagina_actual = $_GET['page'];
+        $pagina_actual = filter_var($pagina_actual, FILTER_VALIDATE_INT);
+
+        if(!$pagina_actual  || $pagina_actual < 1){
+            header('Location: /admin/ponentes?page=1');
+            $pagina_actual = 1;
+        }
+
+        $total_registros = Ponente::total();
+        $registros_por_pagina = 10;
+        $paginacion = new Paginacion($pagina_actual,$registros_por_pagina,$total_registros);
+
+        if($paginacion->total_paginas() < $pagina_actual){
+            header('Location: /admin/ponentes?page=1');
+            $pagina_actual = 1;
+        }
+
+        
+        $ponentes = Ponente::paginar($registros_por_pagina, $paginacion->offset());
+
+        
 
 
         // Render a la vista 
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes y Conferenciantes',
-            'ponentes' => $ponentes
+            'ponentes' => $ponentes,
+            'paginacion' => $paginacion->paginacion()
             
         ]);
     }
@@ -93,6 +115,8 @@ class PonentesController{
 
     public static function editar(Router $router){
 
+        
+
         if(!is_admin()){
             header('Location: /');
         }
@@ -116,6 +140,11 @@ class PonentesController{
         $ponente->imagen_actual = $ponente->imagen;
 
         if($_SERVER["REQUEST_METHOD"] === "POST"){
+
+            if(!is_admin()){
+                header('Location: /');
+            }
+            
             if(!empty($_FILES['imagen']['tmp_name'])){
                 $carpeta_imagenes = '../public/img/speakers';
 
