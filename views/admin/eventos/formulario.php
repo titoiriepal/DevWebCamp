@@ -9,6 +9,7 @@
             id="nombre"
             name="nombre"
             placeholder="Nombre del Evento"
+            value="<?php echo $evento->nombre; ?>"
             
         />
     </div>
@@ -21,7 +22,7 @@
             name="descripcion"
             placeholder="Descripción del evento"
             rows="8"
-        ></textarea>
+        ><?php echo $evento->descripcion; ?></textarea>
     </div>
 
     <div class="formulario__campo">
@@ -31,7 +32,7 @@
             <?php 
                  foreach ($categorias as $categoria){
             ?>
-                <option value="<?php echo $categoria->id; ?>"><?php echo $categoria->nombre; ?></option>
+                <option value="<?php echo $categoria->id; ?>" <?php echo ($categoria->id == $evento->categoria_id) ? 'selected' : ''?>><?php echo $categoria->nombre; ?></option>
 
             <?php 
                  } 
@@ -61,19 +62,24 @@
             ?>
         </div>
 
-        <div id="horas" class="formulario__campo">
+        <input type="hidden" name="dia_id" value="">
+    </div>
+
+        <div class="formulario__campo">
             <label for="" class="formulario__label"> Seleccionar hora:</label>
 
-            <ul class="horas">
+            <ul id = "horas" class="horas">
                 <?php 
                     foreach($horas as $hora){ 
                 ?>
-                    <li class="horas__hora"><?php echo $hora->hora; ?></li>
+                    <li data-hora-id="<?php echo $hora->id; ?>" class="horas__hora horas__hora--deshabilitada"><?php echo $hora->hora; ?></li>
 
                 <?php 
                     } 
                 ?>
             </ul>
+
+            <input type="hidden" name="hora_id" value="">
 
         </div>
         
@@ -93,6 +99,9 @@
             placeholder="Buscar Ponente"
             
         />
+        <ul id="listado-ponentes" class="listado-ponentes"></ul>
+
+        <input type="hidden" name="ponente_id" value="">
     </div>
 
     <div class="formulario__campo">
@@ -104,6 +113,7 @@
             id="disponibles"
             name="disponibles"
             placeholder="Ejemplo: 20"
+            value="<?php echo $evento->disponibles; ?>"
             
         />
     </div>

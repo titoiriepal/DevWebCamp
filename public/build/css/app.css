@@ -501,15 +501,27 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.horas__hora {
+.horas__hora, .horas__hora--deshabilitada, .horas__hora--seleccionada {
   color: #007df4;
   border: 1px solid #007df4;
   border-radius: 1rem;
   padding: 1rem;
   text-align: center;
 }
-.horas__hora:hover {
+.horas__hora:hover, .horas__hora--deshabilitada:hover, .horas__hora--seleccionada:hover {
   cursor: pointer;
+}
+.horas__hora--seleccionada {
+  background-color: #007df4;
+  color: #FFFFFF;
+}
+.horas__hora--deshabilitada {
+  border: 1px solid #64748B;
+  color: #64748B;
+  opacity: 0.5;
+}
+.horas__hora--deshabilitada:hover {
+  cursor: not-allowed;
 }
 
 .header {
@@ -1021,5 +1033,39 @@ h3 {
   .paginacion__enlace--activo {
     display: inline;
   }
+}
+
+.listado-ponentes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-top: -1.5rem;
+  margin-left: 0.7rem;
+  margin-right: -0.7rem;
+}
+.listado-ponentes__ponente, .listado-ponentes__ponente--seleccionado {
+  color: #007df4;
+  border-left: 1px solid #007df4;
+  border-right: 1px solid #007df4;
+  padding: 1rem;
+  background-color: #FFFFFF;
+  text-align: left;
+}
+.listado-ponentes__ponente:first-child, .listado-ponentes__ponente--seleccionado:first-child {
+  border-top: 1px solid #007df4;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+.listado-ponentes__ponente:last-child, .listado-ponentes__ponente--seleccionado:last-child {
+  border-bottom: 1px solid #007df4;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+.listado-ponentes__ponente:hover, .listado-ponentes__ponente--seleccionado:hover {
+  cursor: pointer;
+}
+.listado-ponentes__ponente--seleccionado {
+  background-color: #007df4;
+  color: #FFFFFF;
 }
 /*# sourceMappingURL=app.css.map */

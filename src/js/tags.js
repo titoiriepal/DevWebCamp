@@ -66,4 +66,4 @@
             tagsInputHidden.value = tags.toString();
         }
     }
-})()
+})();
