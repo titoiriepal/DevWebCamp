@@ -2,10 +2,7 @@
     const horas = document.querySelector('#horas');
     if(horas){
 
-        let busqueda = {
-            categoria_id: '',
-            dia: ''
-        }
+
 
         const categoria = document.querySelector('[name= "categoria_id"]')
         const dias = document.querySelectorAll('[name= "dia"]');
@@ -14,6 +11,33 @@
 
         categoria.addEventListener('change', terminoBusqueda);
         dias.forEach( dia => dia.addEventListener('change', terminoBusqueda))
+
+
+        let busqueda = {
+            categoria_id: +categoria.value || '',
+            dia: +inputHiddenDia.value || ''
+        }
+
+        
+        if(!Object.values(busqueda).includes('')){ //Si hay algún campo vacío en el objeto de busqueda
+
+            async function MarcarHoraSeleccionada () {
+              await buscarEventos();
+
+             //Resaltar la hora actual
+            const horaSeleccionadaid = inputHiddenHora.value;
+            const horaSeleccionada = document.querySelector(`[data-hora-id="${horaSeleccionadaid}"]`);
+            horaSeleccionada.classList.remove('horas__hora--deshabilitada');  
+            horaSeleccionada.classList.add('horas__hora--seleccionada'); 
+            horaSeleccionada.onclick = seleccionarHora; 
+            }
+
+            MarcarHoraSeleccionada();
+            
+
+        }
+
+       
 
         function terminoBusqueda(e){
             
