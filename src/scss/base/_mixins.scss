@@ -63,6 +63,14 @@
     text-align: center;
 }
 
+@mixin descripcion-pagina{
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: v.$delgada;
+    color: v.$gris-oscuro;
+    margin-bottom: 5rem;
+}
+
 @mixin texto-fluido($min, $max){
     font-size: clamp($min, -0.8rem + 10vw, $max); //Toma dos valores, el mínimo y el máximo. Si es posible aplica el intermedio siempre que el tamaño del cálculo no se exceda de los limites del máximo y el mínimo
 }
