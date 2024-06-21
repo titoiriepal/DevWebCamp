@@ -18,7 +18,7 @@ class PaginasController{
 
         // Render a la vista 
         $router->render('paginas/devwebcamp', [
-            'titulo' => 'Sobre WebDevCamp',
+            'titulo' => 'Sobre DevWebCamp',
             
         ]);
     }
@@ -27,7 +27,7 @@ class PaginasController{
 
         // Render a la vista 
         $router->render('paginas/paquetes', [
-            'titulo' => 'Paquetes WebDevCamp',
+            'titulo' => 'Paquetes DevWebCamp',
             
         ]);
     }
