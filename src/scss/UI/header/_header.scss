@@ -32,6 +32,15 @@
 
     }
 
+    &__form{
+        display: flex;
+    }
+
+    &__submit{
+        @extend .header__enlace;
+        padding-block: 0;
+    }
+
     &__contenido{
         padding-top: 10rem;
         @include m.mediaq(v.$tablet){
