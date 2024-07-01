@@ -12,7 +12,7 @@ function s($html) : string {
 }
 
 function pagina_actual($path){
-    return str_contains($_SERVER['PATH_INFO'], $path);
+    return str_contains($_SERVER['PATH_INFO'] ?? '/', $path) ;
 }
 
 function is_auth() : bool{
