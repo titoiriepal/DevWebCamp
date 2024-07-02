@@ -8,11 +8,11 @@
             <div class="resumen__texto resumen__texto--numero"><?php echo $ponentes_total; ?></div>
             <div class="resumen__texto">Speakers</div>
         </div>
-        <div class="resumen__bloque">
+        <div class="resumen__bloque" >
             <div class="resumen__texto resumen__texto--numero"><?php echo $conferencias_total; ?></div>
             <div class="resumen__texto">Conferencias</div>
         </div>
-        <div class="resumen__bloque">
+        <div class="resumen__bloque" >
             <div class="resumen__texto resumen__texto--numero"><?php echo $workshops_total; ?></div>
             <div class="resumen__texto">Workshops</div>
         </div>

@@ -105,5 +105,14 @@ class PaginasController{
         ]);
     }
 
+    public static function error(Router $router){
+
+        // Render a la vista 
+        $router->render('paginas/error', [
+            'titulo' => 'Página no encontrada',
+            
+        ]);
+    }
+
 
 }
