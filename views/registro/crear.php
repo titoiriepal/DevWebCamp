@@ -26,6 +26,11 @@
                 <li class="paquete__elemento">Comida y bebida</li>
             </ul>
             <p class="paquete__precio">199€</p>
+            <div id="smart-button-container">
+            <div style="text-align: center;">
+                <div id="paypal-button-container"></div>
+            </div>
+</div>
         </div>
 
         <div class="paquete">
@@ -41,3 +46,70 @@
 
     </div>
 </main>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AelfqyoVOx5IsrKSSMBIOBqxSTcgw7I4Fu0rNrFj804O63uMeQgpWtcp2mVjRf3DSEhy8F8FwguXaaNC&enable-funding=venmo&currency=EUR" data-sdk-integration-source="button-factory"></script>
+ 
+<script>
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'blue',
+          layout: 'vertical',
+          label: 'pay',
+        },
+ 
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{"description":"1","amount":{"currency_code":"EUR","value":199}}]
+          });
+        },
+ 
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+ 
+
+            const datos = new FormData();
+            datos.append('paquete_id', orderData.purchase_units[0].description);
+            datos.append('pago_id', orderData.purchase_units[0].payments.captures[0].id);
+
+            fetch('/finalizar-registro/pagar',{
+                method: 'POST',
+                body: datos
+            }).then( respuesta => respuesta.json())
+            .then(resultado =>{
+                if(resultado.resultado){
+                    actions.redirect('http://localhost:3000/finalizar-registro/conferencias');
+                }
+            })
+            
+            // Full available details
+            //console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+ 
+            // Show a success message within this page, e.g.
+            // const element = document.getElementById('paypal-button-container');
+            // element.innerHTML = '';
+            // element.innerHTML = '<h3>Muchas gracias por tu compra</h3>';
+ 
+            // Or go to another URL:  actions.redirect('thank_you.html');
+            
+          });
+        },
+ 
+        onError: function(err) {
+          console.log(err);
+        }
+      }).render('#paypal-button-container');
+    }
+ 
+  initPayPalButton();
+</script>
+
+
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=BAAbf7TQQzxx9HizFhdT1VAjReT10-DHpRGIXdisJyAufBq4Ig6DtOom3-wxhwXRKzEtCeAl4Dl9Q62tBA&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
+
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "48KXHCHS2ZZSQ",
+  }).render("#paypal-container-48KXHCHS2ZZSQ")
+</script> -->
