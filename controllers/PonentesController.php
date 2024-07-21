@@ -34,6 +34,8 @@ class PonentesController{
         
         $ponentes = Ponente::paginar($registros_por_pagina, $paginacion->offset());
 
+
+
         
 
 
